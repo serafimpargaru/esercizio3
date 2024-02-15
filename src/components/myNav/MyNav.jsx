@@ -3,7 +3,6 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Logo from "../logo/Logo";
-import SearchInput from "../searchInput/SearchInput";
 import { myNavLinks } from "../../data/myNavLinks";
 import { nanoid } from "nanoid";
 
@@ -32,7 +31,6 @@ const MyNav = () => {
               </Nav.Link>
             ))}
           </Nav>
-          <SearchInput />
         </Navbar.Collapse>
       </Container>
     </Navbar>

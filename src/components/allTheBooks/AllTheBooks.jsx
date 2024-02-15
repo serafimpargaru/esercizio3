@@ -4,11 +4,13 @@ import Row from "react-bootstrap/Row";
 import SingleBook from "../singleBook/SingleBook";
 import { nanoid } from "nanoid";
 import BooksLoader from "../loader/BooksLoader";
+import SearchInput from "../searchInput/SearchInput";
 
 const AllTheBooks = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     const getBooks = async () => {
@@ -27,6 +29,16 @@ const AllTheBooks = () => {
     };
     getBooks();
   }, []);
+
+  const filterBooksByTitle = (value) => {
+    setSearchValue(value.toLowerCase());
+  };
+
+  const filteredBooks = searchValue
+    ? books.filter((book) =>
+        book.title.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    : books;
 
   return (
     <Container className="mt-4">
@@ -47,11 +59,15 @@ const AllTheBooks = () => {
         <div className="d-flex flex-column gap-4">
           <div className="d-flex justify-content-center fs-5 fw-semibold rounded-3 border border-3 border-white shadow bg-success">
             <div className="text-white p-3">
-              Ho trovato {books.length} titoli che ti possono interessare
+              Ho trovato {filteredBooks.length} titoli che ti possono
+              interessare
             </div>
           </div>
+          <div className="d-flex justify-content-center mt-4">
+            <SearchInput onSearch={filterBooksByTitle} />
+          </div>
           <Row xs={1} md={2} lg={4} className="g-4">
-            {books.map((book) => (
+            {filteredBooks.map((book) => (
               <SingleBook
                 key={nanoid()}
                 img={book.img}

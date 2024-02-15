@@ -1,10 +1,6 @@
-import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 
-const SearchInput = () => {
-  const [searchValue, setSearchValue] = useState("");
-    console.log(searchValue);
-
+const SearchInput = ({ onSearch }) => {
   return (
     <Form className="d-flex">
       <Form.Control
@@ -12,7 +8,7 @@ const SearchInput = () => {
         placeholder="Cosa stai cercando?"
         className="me-2"
         aria-label="Search"
-        onChange={(event) => setSearchValue(event.target.value)}
+        onChange={(event) => onSearch(event.target.value)}
       />
     </Form>
   );
