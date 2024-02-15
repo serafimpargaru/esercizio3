@@ -5,7 +5,7 @@ const SearchInput = ({ onSearch }) => {
     <Form className="d-flex">
       <Form.Control
         type="search"
-        placeholder="Cosa stai cercando?"
+        placeholder="Cerca titolo..."
         className="me-2"
         aria-label="Search"
         onChange={(event) => onSearch(event.target.value)}
